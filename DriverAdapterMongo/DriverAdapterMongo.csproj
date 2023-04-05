@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Gateway\Repositories\Queries\" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="MongoDB.Driver" Version="2.19.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EstacolNews.Domain\EstacolNews.Domain.NoSql.csproj" />
+    <ProjectReference Include="..\EstacolNews.UseCases\EstacolNews.UseCases.NoSql.csproj" />
   </ItemGroup>
 
 </Project>
