@@ -16,8 +16,8 @@ namespace DriverAdapterMongo.Entities
         public string id_fire { get; set; }
         public string user { get; set; }
         public string password { get; set; }
-
-        public bool estate = true;
+       public int role { get; set; }
+        public bool estate { get; set; }
 
 
     }
