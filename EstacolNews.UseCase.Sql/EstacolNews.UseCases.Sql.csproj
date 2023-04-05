@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EstacolNews.Domain.Sql\EstacolNews.Domain.Sql.csproj" />
+  </ItemGroup>
+
 </Project>

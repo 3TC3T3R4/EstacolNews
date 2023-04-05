@@ -1,7 +1,7 @@
 using AutoMapper.Data;
-using DrivenAdapterSQL;
-using DrivenAdapterSQL.Gateway;
-using DrivenAdapterSQL.Repositories;
+using DriverAdapterSQL;
+using DriverAdapterSQL.Gateway;
+using DriverAdapterSQL.Repositories;
 using EstacolNews.UseCases.Sql.Gateway;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands;
 using EstacolNews.UseCases.Sql.UseCases;

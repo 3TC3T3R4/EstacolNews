@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using EstacolNews.Domain.Sql.Commands;
+using EstacolNews.Domain.Sql.Entities;
+using EstacolNews.UseCases.Sql.Gateway;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EstacolNewsSqlServer.Controllers
 {
@@ -18,9 +22,9 @@ namespace EstacolNewsSqlServer.Controllers
         }
 
         [HttpPost]
-        public async Task<Editor> Create_User([FromBody] InsertNewEditor command)
+        public async Task<Editor> Create_Editor([FromBody] InsertNewEditor command)
         {
-            return await _editorUseCase.AddUser(_mapper.Map<Editor>(command));
+            return await _editorUseCase.AddEditor(_mapper.Map<Editor>(command));
         }
 
 
