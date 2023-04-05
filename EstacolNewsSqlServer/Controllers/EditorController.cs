@@ -29,8 +29,5 @@ namespace EstacolNewsSqlServer.Controllers
 
 
 
-
-
-
     }
 }
