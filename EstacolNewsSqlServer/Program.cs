@@ -3,7 +3,8 @@ using DriverAdapterSQL;
 using DriverAdapterSQL.Gateway;
 using DriverAdapterSQL.Repositories;
 using EstacolNews.UseCases.Sql.Gateway;
-using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands;
+using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.ContentCommands;
+using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.EditorCommands;
 using EstacolNews.UseCases.Sql.UseCases;
 using EstacolNewsSqlServer.Automapper;
 
@@ -21,6 +22,13 @@ builder.Services.AddAutoMapper(config => config.AddDataReaderMapping(), typeof(C
 
 builder.Services.AddScoped<IEditorUseCase, EditorUseCase>();
 builder.Services.AddScoped<IEditorRepository, EditorRepository>();
+builder.Services.AddScoped<IContentUseCase, ContentUseCase>();
+builder.Services.AddScoped<IContentRepository, ContentRepository>();
+
+
+
+
+
 
 builder.Services.AddTransient<IDbConnectionBuilder>(e =>
 {

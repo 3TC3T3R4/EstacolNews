@@ -9,7 +9,7 @@ namespace EstacolNews.Domain.Sql.Commands
     public class InsertNewEditor
     {
 
-        public int id_Editor { get; set; }
+        //public int id_Editor { get; set; }
         public string id_user { get; set; }
         //public string user { get; set; }
         //public string password { get; set; }

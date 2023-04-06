@@ -1,6 +1,6 @@
 ﻿using EstacolNews.Domain.Sql.Entities;
 using EstacolNews.UseCases.Sql.Gateway;
-using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands;
+using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.EditorCommands;
 
 namespace EstacolNews.UseCases.Sql.UseCases
 {
