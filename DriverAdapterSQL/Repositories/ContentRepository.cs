@@ -29,10 +29,17 @@ namespace DriverAdapterSQL.Repositories
             {
                 
                 titleB= content.title,
+                estateProcess = content.estate_process,
                 estateB= content.estate,
-                keywordsB = content.keywords
+                keywordsB = content.keywords,
+                type = content.type_publication,
+                urlB = content.url,
+                finishdateB = content.finish_date,
+                publicationdateB = content.publication_date,
+                startdate = content.program_date,
+                numberCollaborators = content.number_of_collaborators
             };
-            string sqlQuery = $"INSERT INTO {tableName} (title,estate,keywords)VALUES(@titleB, @estateB, @keywordsB)";
+            string sqlQuery = $"INSERT INTO {tableName} (title,estate_process,estate,keywords,type_publication,url,finish_date,publication_date,program_date,number_of_collaborators)VALUES(@titleB,@estateProcess,@estateB,@keywordsB,@type,@urlB,@finishdateB,@publicationdateB,@startdate,@numberCollaborators)";
             var rows = await connection.ExecuteAsync(sqlQuery, contentNewAdd);
             return content;
         }
