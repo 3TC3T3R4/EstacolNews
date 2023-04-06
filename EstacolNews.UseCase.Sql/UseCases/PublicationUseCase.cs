@@ -1,4 +1,5 @@
-﻿using EstacolNews.Domain.Sql.Entities;
+﻿using EstacolNews.Domain.Sql.Commands;
+using EstacolNews.Domain.Sql.Entities;
 using EstacolNews.UseCases.Sql.Gateway;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.EditorCommands;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.PublicationCommands;
@@ -19,7 +20,7 @@ namespace EstacolNews.UseCases.Sql.UseCases
         {
             _publicationRepository =publicationRepository;
         }
-        public async Task<Publication> AddPublication(Publication publication)
+        public async Task<InsertNewPublication> AddPublication(Publication publication)
         {
             return await _publicationRepository.InsertPublicationAsync(publication);
         }

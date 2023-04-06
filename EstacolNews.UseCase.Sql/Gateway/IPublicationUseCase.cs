@@ -1,4 +1,5 @@
-﻿using EstacolNews.Domain.Sql.Entities;
+﻿using EstacolNews.Domain.Sql.Commands;
+using EstacolNews.Domain.Sql.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace EstacolNews.UseCases.Sql.Gateway
     {
 
 
-        Task<Publication> AddPublication(Publication publication);
+        Task<InsertNewPublication> AddPublication(Publication publication);
 
     }
 }

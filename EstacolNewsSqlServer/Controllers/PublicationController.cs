@@ -22,7 +22,7 @@ namespace EstacolNewsSqlServer.Controllers
         }
 
         [HttpPost]
-        public async Task<Publication> Create_Publication([FromBody] InsertNewPublication command)
+        public async Task<InsertNewPublication> Create_Publication([FromBody] InsertNewPublication command)
         {
             return await _publicationUseCase.AddPublication(_mapper.Map<Publication>(command));
         }
