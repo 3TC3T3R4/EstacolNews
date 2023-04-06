@@ -14,6 +14,9 @@ namespace EstacolNewsSqlServer.Automapper
 
             CreateMap<InsertNewContent, Content>().ReverseMap();
 
+            CreateMap<InsertNewPublication, Publication>().ReverseMap();
+
+
 
         }
 

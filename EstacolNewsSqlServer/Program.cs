@@ -2,11 +2,12 @@ using AutoMapper.Data;
 using DriverAdapterSQL;
 using DriverAdapterSQL.Gateway;
 using DriverAdapterSQL.Repositories;
+using EstacolNews.UseCases.Sql.UseCases;
+using EstacolNewsSqlServer.Automapper;
 using EstacolNews.UseCases.Sql.Gateway;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.ContentCommands;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.EditorCommands;
-using EstacolNews.UseCases.Sql.UseCases;
-using EstacolNewsSqlServer.Automapper;
+using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.PublicationCommands;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,7 +25,8 @@ builder.Services.AddScoped<IEditorUseCase, EditorUseCase>();
 builder.Services.AddScoped<IEditorRepository, EditorRepository>();
 builder.Services.AddScoped<IContentUseCase, ContentUseCase>();
 builder.Services.AddScoped<IContentRepository, ContentRepository>();
-
+builder.Services.AddScoped<IPublicationUseCase, PublicationUseCase>();
+builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
 
 
 
