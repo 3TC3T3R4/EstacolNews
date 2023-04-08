@@ -12,7 +12,11 @@ namespace DriverAdapterSQL.Repositories
         private readonly IDbConnectionBuilder _dbConnectionBuilder;
         private readonly IMapper _mapper;
         private readonly string tableName = "Publication";
+        private readonly string tableNameE = "Editor";
+        private readonly string tableNameC = "Content";
 
+
+       
 
         public PublicationRepository(IDbConnectionBuilder dbConnectionBuilder, IMapper mapper)
         {
@@ -53,6 +57,42 @@ namespace DriverAdapterSQL.Repositories
             return _mapper.Map<InsertNewPublication>(publicationToCreate);
         }
 
-      
+        //public async Task<CustomerWithAccountAndCard> GetCustomerWithAccountAndCard(int id)
+        //{
+        //    var connection = await _dbConnectionBuilder.CreateConnectionAsync();
+        //    string sqlQuery = $"SELECT * FROM {_tableNameCustomers} cus " +
+        //                        $"INNER JOIN Accounts a ON a.Id_Customer = @id " +
+        //                        $"INNER JOIN Cards c ON c.Id_Account = a.Account_Id " +
+        //                        $"WHERE cus.Customer_Id = @id";
+
+        //    var customerAll = new CustomerWithAccountAndCard();
+        //    var customer = await connection.QueryAsync<CustomerWithAccountAndCard, AccountWithCardOnly,
+        //        Card, CustomerWithAccountAndCard>(sqlQuery, (c, ac, card) =>
+        //        {
+        //            if (customerAll.Customer_Id.Equals(0))
+        //            {
+        //                customerAll = c;
+        //            }
+
+        //            customerAll.Accounts.Add(ac);
+        //            ac.Card = card;
+
+        //            return c;
+        //        },
+        //    new { id },
+        //    splitOn: "Account_Id, Card_Id");
+
+        //    if (customer.IsNullOrEmpty())
+        //    {
+        //        throw new Exception("The customer doesn't exist or doesn't have an account or card assigned.");
+        //    }
+        //    connection.Close();
+        //    return customerAll;
+        //}
+
+
+
+
+
     }
 }

@@ -12,7 +12,7 @@ namespace EstacolNews.Domain.Sql.Commands
        // public int id_content { get; set; }
         public string title { get; set; }
         public string estate_process { get; set; }
-        public bool estate { get; set; }
+       public bool estate { get; set; }
         public string keywords { get; set; }
         public string type_publication { get; set; }
         public string url { get; set; }

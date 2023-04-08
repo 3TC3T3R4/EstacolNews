@@ -8,7 +8,9 @@ namespace EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.EditorCommands
 
 
         Task<Editor> InsertEditorAsync(Editor editor);
+        Task<List<Editor>> GetAllEditorsAsync();
 
+        Task<Editor> GetEditorByIdAsync(int idEditor);
 
     }
 }

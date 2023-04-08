@@ -34,6 +34,29 @@ namespace DriverAdapterSQL.Repositories
             return editor;
         }
 
+        public async Task<List<Editor>> GetAllEditorsAsync()
+        {
+            var connection = await _dbConnectionBuilder.CreateConnectionAsync();
+            string sqlQuery = $"SELECT * FROM {tableName}";
+            var result = await connection.QueryAsync<Editor>(sqlQuery);
+            connection.Close();
+            return result.ToList();
+
+
+        }
+
+        public async Task<Editor> GetEditorByIdAsync(int idEditor)
+        {
+            var connection = await _dbConnectionBuilder.CreateConnectionAsync();
+            string sqlQuery = $"SELECT * FROM {tableName} WHERE id_editor = {idEditor}";
+            var result = await connection.QueryFirstAsync<Editor>(sqlQuery);
+            connection.Close();
+            return result;
+        }
+
+
+
+
 
 
     }

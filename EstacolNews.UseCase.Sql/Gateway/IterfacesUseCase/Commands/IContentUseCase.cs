@@ -6,11 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.ContentCommands
+namespace EstacolNews.UseCases.Sql.Gateway.IterfacesUseCase.Commands
 {
-    public interface IContentRepository
+    public interface IContentUseCase
     {
-        Task<Content> InsertContentAsync(Content content);
+
+        Task<Content> AddContent(Content content);
         Task<List<Content>> GetAllContentsAsync();
         Task<Content> GetContentByIdAsync(int idContent);
         Task<InsertNewContent> UpdateContentByIdAsync(int idContent, InsertNewContent content);

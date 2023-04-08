@@ -7,6 +7,8 @@ using EstacolNews.UseCases.NoSql.Gateway.Repositories.Commands;
 using EstacolNews.UseCases.NoSql.UseCases;
 using EstacolNewsWithMongo.Automapper;
 
+
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,6 +24,19 @@ builder.Services.AddAutoMapper(config => config.AddDataReaderMapping(), typeof(C
 builder.Services.AddScoped<IUserUseCase, UserUseCase>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+builder.Services.AddCors(options =>
+{
+
+    options.AddPolicy(name: MyAllowSpecificOrigins, policy =>
+    {
+        policy.WithOrigins("http://localhost:4200").AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials(); ;
+    });
+
+});
+
+
 builder.Services.AddSingleton<IContext>(provider => new Context(builder.Configuration.GetConnectionString("urlConnection"), "EstacolNews"));
 var app = builder.Build();
 
@@ -33,6 +48,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+
+app.UseCors(MyAllowSpecificOrigins);
+
 
 app.UseAuthorization();
 

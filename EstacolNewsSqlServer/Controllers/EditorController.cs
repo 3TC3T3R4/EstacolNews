@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using EstacolNews.Domain.Sql.Commands;
 using EstacolNews.Domain.Sql.Entities;
-using EstacolNews.UseCases.Sql.Gateway;
+using EstacolNews.UseCases.Sql.Gateway.IterfacesUseCase.Commands;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EstacolNewsSqlServer.Controllers
@@ -26,6 +26,23 @@ namespace EstacolNewsSqlServer.Controllers
         {
             return await _editorUseCase.AddEditor(_mapper.Map<Editor>(command));
         }
+
+        [HttpGet]
+        public async Task<List<Editor>> Get_List_Editors()
+        {
+            return await _editorUseCase.GetAllEditorsAsync();
+        }
+
+
+
+        [HttpGet("{id:int}")]
+
+        public async Task<Editor> Get_Content_By_Id(int id)
+        {
+            return await _editorUseCase.GetEditorByIdAsync(id);
+        }
+
+
 
 
 

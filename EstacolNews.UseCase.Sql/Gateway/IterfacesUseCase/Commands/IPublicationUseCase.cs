@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EstacolNews.UseCases.Sql.Gateway
+namespace EstacolNews.UseCases.Sql.Gateway.IterfacesUseCase.Commands
 {
-   public interface IPublicationUseCase
+    public interface IPublicationUseCase
     {
 
 

@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using EstacolNews.Domain.Sql.Commands;
 using EstacolNews.Domain.Sql.Entities;
-using EstacolNews.UseCases.Sql.Gateway;
-using EstacolNews.UseCases.Sql.UseCases;
+using EstacolNews.UseCases.Sql.Gateway.IterfacesUseCase.Commands;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,6 +27,34 @@ namespace EstacolNewsSqlServer.Controllers
             return await _contentUseCase.AddContent(_mapper.Map<Content>(command));
         }
 
+        [HttpGet]
+        public async Task<List<Content>> Get_List_Contents()
+        {
+            return await _contentUseCase.GetAllContentsAsync();
+        }
+
+
+
+        [HttpGet("{id:int}")]
+
+        public async Task<Content> Get_Content_By_Id(int id)
+        {
+            return await _contentUseCase.GetContentByIdAsync(id);
+        }
+
+
+
+        [HttpPut]
+        public async Task<InsertNewContent> Update_Content_By_Id(int id, [FromBody] InsertNewContent command)
+        {
+            return await _contentUseCase.UpdateContentByIdAsync( id, command);
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<string> Delete_Content_By_Id(int id)
+        {
+            return await _contentUseCase.DeleteContentByIdAsync(id);
+        }
 
 
 

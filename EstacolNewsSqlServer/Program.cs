@@ -4,11 +4,10 @@ using DriverAdapterSQL.Gateway;
 using DriverAdapterSQL.Repositories;
 using EstacolNews.UseCases.Sql.UseCases;
 using EstacolNewsSqlServer.Automapper;
-using EstacolNews.UseCases.Sql.Gateway;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.ContentCommands;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.EditorCommands;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.PublicationCommands;
-
+using EstacolNews.UseCases.Sql.Gateway.IterfacesUseCase.Commands;
 
 var builder = WebApplication.CreateBuilder(args);
 

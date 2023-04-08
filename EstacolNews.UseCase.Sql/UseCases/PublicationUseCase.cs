@@ -1,6 +1,6 @@
 ﻿using EstacolNews.Domain.Sql.Commands;
 using EstacolNews.Domain.Sql.Entities;
-using EstacolNews.UseCases.Sql.Gateway;
+using EstacolNews.UseCases.Sql.Gateway.IterfacesUseCase.Commands;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.EditorCommands;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.PublicationCommands;
 using System;
