@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using EstacolNews.Domain.Sql.Commands;
 using EstacolNews.Domain.Sql.Entities;
+using EstacolNews.Domain.Sql.Entities.Wrappers.EditorSide.Editor;
 using EstacolNews.UseCases.Sql.Gateway.IterfacesUseCase.Commands;
+using EstacolNews.UseCases.Sql.UseCases;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,9 +30,9 @@ namespace EstacolNewsSqlServer.Controllers
         }
 
         [HttpGet]
-        public async Task<InsertNewPublication> Get_Publication([FromBody] InsertNewPublication command)
+        public async Task<PublicationByEditor> Get_PublicationByEditor(int idEditor)
         {
-            return await _publicationUseCase.AddPublication(_mapper.Map<Publication>(command));
+            return await _publicationUseCase.GetAllPublicationByEditorAsync(idEditor);
         }
 
 

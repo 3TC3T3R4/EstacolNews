@@ -37,7 +37,7 @@ namespace DriverAdapterSQL.Repositories
         public async  Task<Content> GetContentByIdAsync(int idContent)
         {
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-            string sqlQuery = $"SELECT * FROM {tableName} WHERE id_content = {idContent}";
+            string sqlQuery = $"SELECT title FROM {tableName} WHERE id_content = {idContent}";
             var result = await connection.QueryFirstAsync<Content>(sqlQuery);
             connection.Close();
             return result;

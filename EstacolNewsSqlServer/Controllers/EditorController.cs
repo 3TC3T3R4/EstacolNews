@@ -36,11 +36,11 @@ namespace EstacolNewsSqlServer.Controllers
 
 
         [HttpGet("{id:int}")]
-
-        public async Task<Editor> Get_Content_By_Id(int id)
+        public async Task<Editor> Get_Editor_By_Id(int id)
         {
             return await _editorUseCase.GetEditorByIdAsync(id);
         }
+
 
 
 

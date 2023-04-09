@@ -3,7 +3,9 @@ using Dapper;
 using DriverAdapterSQL.Gateway;
 using EstacolNews.Domain.Sql.Commands;
 using EstacolNews.Domain.Sql.Entities;
+using EstacolNews.Domain.Sql.Entities.Wrappers.EditorSide.Editor;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.PublicationCommands;
+using Microsoft.IdentityModel.Tokens;
 
 namespace DriverAdapterSQL.Repositories
 {
@@ -57,42 +59,33 @@ namespace DriverAdapterSQL.Repositories
             return _mapper.Map<InsertNewPublication>(publicationToCreate);
         }
 
-        //public async Task<CustomerWithAccountAndCard> GetCustomerWithAccountAndCard(int id)
-        //{
-        //    var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-        //    string sqlQuery = $"SELECT * FROM {_tableNameCustomers} cus " +
-        //                        $"INNER JOIN Accounts a ON a.Id_Customer = @id " +
-        //                        $"INNER JOIN Cards c ON c.Id_Account = a.Account_Id " +
-        //                        $"WHERE cus.Customer_Id = @id";
-
-        //    var customerAll = new CustomerWithAccountAndCard();
-        //    var customer = await connection.QueryAsync<CustomerWithAccountAndCard, AccountWithCardOnly,
-        //        Card, CustomerWithAccountAndCard>(sqlQuery, (c, ac, card) =>
-        //        {
-        //            if (customerAll.Customer_Id.Equals(0))
-        //            {
-        //                customerAll = c;
-        //            }
-
-        //            customerAll.Accounts.Add(ac);
-        //            ac.Card = card;
-
-        //            return c;
-        //        },
-        //    new { id },
-        //    splitOn: "Account_Id, Card_Id");
-
-        //    if (customer.IsNullOrEmpty())
-        //    {
-        //        throw new Exception("The customer doesn't exist or doesn't have an account or card assigned.");
-        //    }
-        //    connection.Close();
-        //    return customerAll;
-        //}
+        public async Task<PublicationByEditor> GetAllPublicationByEditorAsync(int id)
+        {
+            var connection = await _dbConnectionBuilder.CreateConnectionAsync();
+            string sqlQuery = $"SELECT * FROM {tableNameC} co " +
+                                $"INNER JOIN Publication pu ON pu.id_content_publication = co.id_content " +
+                                $"INNER JOIN Editor edi ON edi.id_editor = pu.id_editor_publication " +
+                                $"WHERE edi.id_editor = @id";
 
 
+            var publicationAll = new PublicationByEditor();
+            var publication = await connection.QueryAsync<PublicationByEditor,Editor,
+                Content, PublicationByEditor>(sqlQuery, (pbe,e, c) =>
+                {
+                    publicationAll.Contents.Add(c);
+                    return pbe;
+                },
+            new { id },
+            splitOn: "id_editor, id_content");
+            if (publication.IsNullOrEmpty())
+            {
+                throw new Exception("The publication doesn't exist or doesn't have an content or editor assigned.");
+            }
+            connection.Close();
+            return publicationAll;
 
 
+        }
 
     }
 }
