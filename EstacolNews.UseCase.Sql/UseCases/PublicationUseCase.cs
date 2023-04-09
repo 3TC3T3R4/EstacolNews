@@ -1,5 +1,6 @@
 ﻿using EstacolNews.Domain.Sql.Commands;
 using EstacolNews.Domain.Sql.Entities;
+using EstacolNews.Domain.Sql.Entities.Wrappers.ClientSide.Content;
 using EstacolNews.Domain.Sql.Entities.Wrappers.EditorSide.Editor;
 using EstacolNews.UseCases.Sql.Gateway.IterfacesUseCase.Commands;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.EditorCommands;
@@ -21,7 +22,7 @@ namespace EstacolNews.UseCases.Sql.UseCases
         {
             _publicationRepository =publicationRepository;
         }
-        public async Task<InsertNewPublication> AddPublication(Publication publication)
+        public async Task<Publication> AddPublication(Publication publication)
         {
             return await _publicationRepository.InsertPublicationAsync(publication);
         }
@@ -29,7 +30,10 @@ namespace EstacolNews.UseCases.Sql.UseCases
         {
             return await _publicationRepository.GetAllPublicationByEditorAsync(idEditor);
         }
+        public async Task<PublicationByContent> GetAllPublicationByContentAsync(int idContent)
+        {
+            return await _publicationRepository.GetAllPublicationByContentAsync(idContent);
+        }
 
-      
     }
 }

@@ -3,11 +3,7 @@ using DriverAdapterSQL.Gateway;
 using EstacolNews.Domain.Sql.Commands;
 using EstacolNews.Domain.Sql.Entities;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.ContentCommands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DriverAdapterSQL.Repositories
 {
@@ -69,9 +65,12 @@ namespace DriverAdapterSQL.Repositories
                 finishdateB = content.finish_date,
                 publicationdateB = content.publication_date,
                 startdate = content.program_date,
-                numberCollaborators = content.number_of_collaborators
+                numberCollaborators = 0,
+                likes = 0,
+                dislikes = 0,
+                number_of_Share = 0
             };
-            string sqlQuery = $"INSERT INTO {tableName} (title,estate_process,estate,keywords,type_publication,url,finish_date,publication_date,program_date,number_of_collaborators)VALUES(@titleB,@estateProcess,@estateB,@keywordsB,@type,@urlB,@finishdateB,@publicationdateB,@startdate,@numberCollaborators)";
+            string sqlQuery = $"INSERT INTO {tableName} (title,estate_process,estate,keywords,type_publication,url,finish_date,publication_date,program_date,number_of_collaborators,likes,dislikes,number_of_Share)VALUES(@titleB,@estateProcess,@estateB,@keywordsB,@type,@urlB,@finishdateB,@publicationdateB,@startdate,@numberCollaborators,@likes,@dislikes,@number_of_Share)";
             var rows = await connection.ExecuteAsync(sqlQuery, contentNewAdd);
             return content;
         }
@@ -81,7 +80,7 @@ namespace DriverAdapterSQL.Repositories
         {
 
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-            string sqlQuery = $"UPDATE {tableName} SET title = @title,estate_process = @estate_process,keywords = @keywords,type_publication = @type_publication,finish_date = @finish_date,publication_date = @publication_date,program_date = @program_date,number_of_collaborators = @number_of_collaborators WHERE id_content = {idContent}";
+            string sqlQuery = $"UPDATE {tableName} SET title = @title,estate_process = @estate_process,keywords = @keywords,type_publication = @type_publication,finish_date = @finish_date,publication_date = @publication_date,program_date = @program_date WHERE id_content = {idContent}";
             var rows = await connection.ExecuteAsync(sqlQuery, content);
             return content;
         }

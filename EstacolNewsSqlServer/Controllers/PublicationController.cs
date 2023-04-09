@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EstacolNews.Domain.Sql.Commands;
 using EstacolNews.Domain.Sql.Entities;
+using EstacolNews.Domain.Sql.Entities.Wrappers.ClientSide.Content;
 using EstacolNews.Domain.Sql.Entities.Wrappers.EditorSide.Editor;
 using EstacolNews.UseCases.Sql.Gateway.IterfacesUseCase.Commands;
 using EstacolNews.UseCases.Sql.UseCases;
@@ -24,7 +25,7 @@ namespace EstacolNewsSqlServer.Controllers
         }
 
         [HttpPost]
-        public async Task<InsertNewPublication> Create_Publication([FromBody] InsertNewPublication command)
+        public async Task<Publication> Create_Publication([FromBody] InsertNewPublication command)
         {
             return await _publicationUseCase.AddPublication(_mapper.Map<Publication>(command));
         }
@@ -35,6 +36,11 @@ namespace EstacolNewsSqlServer.Controllers
             return await _publicationUseCase.GetAllPublicationByEditorAsync(idEditor);
         }
 
+        [HttpGet("GetPublicationWithEditor")]
+        public async Task<PublicationByContent> Get_PublicationByContent(int idContent)
+        {
+            return await _publicationUseCase.GetAllPublicationByContentAsync(idContent);
+        }
 
 
 

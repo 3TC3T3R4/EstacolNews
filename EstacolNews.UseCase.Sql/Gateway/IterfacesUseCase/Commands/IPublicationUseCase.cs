@@ -1,5 +1,6 @@
 ﻿using EstacolNews.Domain.Sql.Commands;
 using EstacolNews.Domain.Sql.Entities;
+using EstacolNews.Domain.Sql.Entities.Wrappers.ClientSide.Content;
 using EstacolNews.Domain.Sql.Entities.Wrappers.EditorSide.Editor;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,10 @@ namespace EstacolNews.UseCases.Sql.Gateway.IterfacesUseCase.Commands
     {
 
 
-        Task<InsertNewPublication> AddPublication(Publication publication);
+        Task<Publication> AddPublication(Publication publication);
         Task<PublicationByEditor> GetAllPublicationByEditorAsync(int idEditor);
+        Task<PublicationByContent> GetAllPublicationByContentAsync(int idContent);
+
 
 
     }
