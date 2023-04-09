@@ -4,12 +4,13 @@ using DriverAdapterSQL.Gateway;
 using EstacolNews.Domain.Sql.Commands;
 using EstacolNews.Domain.Sql.Entities;
 using EstacolNews.Domain.Sql.Entities.Wrappers.EditorSide.Editor;
+using EstacolNews.Domain.Sql.Entities.Wrappers.EditorSide.Publication;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.PublicationCommands;
 using Microsoft.IdentityModel.Tokens;
 
 namespace DriverAdapterSQL.Repositories
 {
-   public class PublicationRepository :IPublicationRepository
+    public class PublicationRepository : IPublicationRepository
     {
         private readonly IDbConnectionBuilder _dbConnectionBuilder;
         private readonly IMapper _mapper;
@@ -18,7 +19,7 @@ namespace DriverAdapterSQL.Repositories
         private readonly string tableNameC = "Content";
 
 
-       
+
 
         public PublicationRepository(IDbConnectionBuilder dbConnectionBuilder, IMapper mapper)
         {
@@ -62,30 +63,36 @@ namespace DriverAdapterSQL.Repositories
         public async Task<PublicationByEditor> GetAllPublicationByEditorAsync(int id)
         {
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-            string sqlQuery = $"SELECT * FROM {tableNameC} co " +
-                                $"INNER JOIN Publication pu ON pu.id_content_publication = co.id_content " +
-                                $"INNER JOIN Editor edi ON edi.id_editor = pu.id_editor_publication " +
+            string sqlQuery = $"SELECT * FROM {tableNameE} edi " +
+                                $"INNER JOIN Publication pu ON pu.id_editor_publication = @id " +
+                                $"INNER JOIN Content c ON c.id_content = pu.id_content_publication " +
                                 $"WHERE edi.id_editor = @id";
 
-
-            var publicationAll = new PublicationByEditor();
-            var publication = await connection.QueryAsync<PublicationByEditor,Editor,
-                Content, PublicationByEditor>(sqlQuery, (pbe,e, c) =>
+            var customerAll = new PublicationByEditor();
+            var customer = await connection.QueryAsync<PublicationByEditor, PublicationsWithContents,
+                Content, PublicationByEditor>(sqlQuery, (c, ac, card) =>
                 {
-                    publicationAll.Contents.Add(c);
-                    return pbe;
+                    
+                    customerAll.Publications.Add(ac);
+                    ac.Content.Add(card) ;
+
+                    return c;
                 },
             new { id },
-            splitOn: "id_editor, id_content");
-            if (publication.IsNullOrEmpty())
+            splitOn: "id_publication, id_content");
+
+            if (customer.IsNullOrEmpty())
             {
-                throw new Exception("The publication doesn't exist or doesn't have an content or editor assigned.");
+                throw new Exception("The publication doesn't exist or doesn't have an account or card assigned.");
             }
             connection.Close();
-            return publicationAll;
-
+            return customerAll;
 
         }
+
+
+
+
 
     }
 }

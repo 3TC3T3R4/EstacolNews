@@ -23,8 +23,19 @@ namespace DriverAdapterSQL.Repositories
             _dbConnectionBuilder = dbConnectionBuilder;
         }
 
+
         public async Task<List<Content>> GetAllContentsAsync()
         {
+            var data = await GetAllContentsAsyncFilter();
+            var result = data.Where(x => x.estate_process == "Publicado" && x.estate !=false).ToList();
+            return result;
+        }
+
+
+        public async Task<List<Content>> GetAllContentsAsyncFilter()
+        {
+
+
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
             string sqlQuery = $"SELECT * FROM {tableName}";
             var result = await connection.QueryAsync<Content>(sqlQuery);
@@ -84,46 +95,6 @@ namespace DriverAdapterSQL.Repositories
             connection.Close();
             return "ConentDelted";
         }
-
-
-
-
-        //public async Task<Content> InsertContentAsync(Content content)
-        //{
-
-
-
-
-
-        //    var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-        //    var contentNewAdd = new
-        //    {
-
-        //        titleB = content.title,
-        //        estateProcess = content.estate_process,
-        //        estateB = content.estate,
-        //        keywordsB = content.keywords,
-        //        type = content.type_publication,
-        //        urlB = content.url,
-        //        finishdateB = content.finish_date,
-        //        publicationdateB = content.publication_date,
-        //        startdate = content.program_date,
-        //        numberCollaborators = content.number_of_collaborators
-        //    };
-        //    string sqlQuery = $"INSERT INTO {tableName} (title,estate_process,estate,keywords,type_publication,url,finish_date,publication_date,program_date,number_of_collaborators)VALUES(@titleB,@estateProcess,@estateB,@keywordsB,@type,@urlB,@finishdateB,@publicationdateB,@startdate,@numberCollaborators)";
-        //    var rows = await connection.ExecuteAsync(sqlQuery, contentNewAdd);
-        //    return content;
-        //}
-
-
-
-
-
-
-
-
-
-
 
     }
 }
