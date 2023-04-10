@@ -23,10 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="PublicationTest\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\EstacolNews.UseCase.Sql\EstacolNews.UseCases.Sql.csproj" />
   </ItemGroup>
 
