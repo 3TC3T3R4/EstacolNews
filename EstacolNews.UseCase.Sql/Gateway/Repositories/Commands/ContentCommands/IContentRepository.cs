@@ -16,6 +16,7 @@ namespace EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.ContentCommands
         Task<InsertNewContent> UpdateContentByIdAsync(int idContent, InsertNewContent content);
         Task<string> DeleteContentByIdAsync(int idContent);
 
+        Task<string> LikeContentByIdAsync(int idContent);
 
 
     }

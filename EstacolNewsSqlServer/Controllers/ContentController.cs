@@ -57,6 +57,15 @@ namespace EstacolNewsSqlServer.Controllers
         }
 
 
+        [HttpPut("LikeContent")]
+        public async Task<string> Like_Content(int idContent)
+        {
+            return await _contentUseCase.LikeContentByIdAsync(idContent);
+        }
+
+
+
+
 
 
     }

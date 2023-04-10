@@ -22,6 +22,7 @@ namespace EstacolNews.Domain.Sql.Entities
         public int likes { get; set; }
         public int dislikes { get; set; }
         public int number_of_share { get; set; }
+        public string description { get; set; }
 
 
     }

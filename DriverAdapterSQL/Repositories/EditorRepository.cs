@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using Ardalis.GuardClauses;
+using Dapper;
 using DriverAdapterSQL.Gateway;
 using EstacolNews.Domain.Sql.Entities;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.EditorCommands;
@@ -19,6 +20,12 @@ namespace DriverAdapterSQL.Repositories
 
         public async Task<Editor> InsertEditorAsync(Editor editor)
         {
+
+            Guard.Against.Null(editor, nameof(editor));
+            Guard.Against.NullOrEmpty(editor.complete_name, nameof(editor.complete_name), "No puedes continuar sin un nombre");
+            Guard.Against.NullOrEmpty(editor.phone, nameof(editor.phone));
+            Guard.Against.NullOrEmpty(editor.estate.ToString(), nameof(editor.estate));
+
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
             var editorNewAdd = new
             {

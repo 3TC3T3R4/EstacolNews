@@ -47,8 +47,11 @@ namespace EstacolNews.UseCases.Sql.UseCases
         {
             return await _contentRepository.DeleteContentByIdAsync(idContent);
         }
-    
-    
+        public async Task<string> LikeContentByIdAsync(int idContent)
+        {
+            return await _contentRepository.LikeContentByIdAsync(idContent);
+        }
+
     }
 
 }

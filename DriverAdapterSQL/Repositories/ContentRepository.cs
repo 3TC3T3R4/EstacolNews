@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using Ardalis.GuardClauses;
+using Dapper;
 using DriverAdapterSQL.Gateway;
 using EstacolNews.Domain.Sql.Commands;
 using EstacolNews.Domain.Sql.Entities;
@@ -52,6 +53,16 @@ namespace DriverAdapterSQL.Repositories
 
         public async Task<Content> InsertContentAsync(Content content)
         {
+
+            Guard.Against.Null(content, nameof(content));
+            Guard.Against.NullOrEmpty(content.title, nameof(content.title), "NO PUEDES CREAR ALGO NUEVO SIN UN TITULO");
+           
+
+
+
+
+
+
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
             var contentNewAdd = new
             {
@@ -68,9 +79,10 @@ namespace DriverAdapterSQL.Repositories
                 numberCollaborators = 0,
                 likes = 0,
                 dislikes = 0,
-                number_of_Share = 0
+                number_of_Share = 0,
+                descriptionB = content.description
             };
-            string sqlQuery = $"INSERT INTO {tableName} (title,estate_process,estate,keywords,type_publication,url,finish_date,publication_date,program_date,number_of_collaborators,likes,dislikes,number_of_Share)VALUES(@titleB,@estateProcess,@estateB,@keywordsB,@type,@urlB,@finishdateB,@publicationdateB,@startdate,@numberCollaborators,@likes,@dislikes,@number_of_Share)";
+            string sqlQuery = $"INSERT INTO {tableName} (title,estate_process,estate,keywords,type_publication,url,finish_date,publication_date,program_date,number_of_collaborators,likes,dislikes,number_of_Share,description)VALUES(@titleB,@estateProcess,@estateB,@keywordsB,@type,@urlB,@finishdateB,@publicationdateB,@startdate,@numberCollaborators,@likes,@dislikes,@number_of_Share,@descriptionB)";
             var rows = await connection.ExecuteAsync(sqlQuery, contentNewAdd);
             return content;
         }
@@ -80,7 +92,7 @@ namespace DriverAdapterSQL.Repositories
         {
 
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-            string sqlQuery = $"UPDATE {tableName} SET title = @title,estate_process = @estate_process,keywords = @keywords,type_publication = @type_publication,finish_date = @finish_date,publication_date = @publication_date,program_date = @program_date WHERE id_content = {idContent}";
+            string sqlQuery = $"UPDATE {tableName} SET title = @title,keywords = @keywords,finish_date = @finish_date,publication_date = @publication_date,program_date = @program_date,description = @description WHERE id_content = {idContent}";
             var rows = await connection.ExecuteAsync(sqlQuery, content);
             return content;
         }
@@ -94,6 +106,19 @@ namespace DriverAdapterSQL.Repositories
             connection.Close();
             return "ConentDelted";
         }
+
+        public async Task<string> LikeContentByIdAsync(int idContent)
+        {
+            //var param = new { like = 1 };
+            var connection = await _dbConnectionBuilder.CreateConnectionAsync();
+            string sqlQuery = $"UPDATE {tableName} SET  likes = likes + 1 WHERE  id_content = {idContent}";
+            var result = await connection.ExecuteAsync(sqlQuery);
+            connection.Close();
+            return "Like successfully";
+        }
+
+
+
 
     }
 }
