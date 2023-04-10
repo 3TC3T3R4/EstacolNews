@@ -1,15 +1,11 @@
 ﻿using EstacolNews.Domain.Sql.Entities;
 using EstacolNews.Domain.Sql.Entities.Wrappers.ClientSide.Content;
+using EstacolNews.Domain.Sql.Entities.Wrappers.ClientSide.Publication;
 using EstacolNews.Domain.Sql.Entities.Wrappers.EditorSide.Editor;
 using EstacolNews.Domain.Sql.Entities.Wrappers.EditorSide.Publication;
-using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.EditorCommands;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.PublicationCommands;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace EstacolNewsSql.PublicationTest
 {
@@ -107,30 +103,22 @@ namespace EstacolNewsSql.PublicationTest
         {
             //Arrange
             var newPublication = new PublicationByContent
-            {
-                completeName = "Estevan",
-                Publications = new List<PublicationsWithContents>{
 
-                    new PublicationsWithContents
+            {
+                title = "Estevan",
+                Publications = new List<PublicationWithEditors>{
+
+                    new PublicationWithEditors
                     {
                          id_publication = 1,
-                         Content = new List<Content>{
+                         Editor = new List<Editor>{
 
-                             new Content{
-
-                                  title = "Test",
-                                  estate_process = "Test",
-                                    estate = true,
-                                      keywords = "Test",
-                                   type_publication = "Test",
-                                     url = "Test",
-                                     finish_date = DateTime.Now,
-                                        publication_date = DateTime.Now,
-                                     program_date = DateTime.Now,
-                                     number_of_collaborators = 1,
-                                     likes = 1,
-                                        dislikes = 0,
-                                        description = "Test"
+                             new Editor{
+                                 id_user = "Mongo",
+                                 complete_name = "Estevan",
+                                 phone ="213654",
+                                 estate = true
+                              
 
                              }
 
@@ -143,24 +131,17 @@ namespace EstacolNewsSql.PublicationTest
             };
 
 
-            _mockPublicationRepository.Setup(a => a.GetAllPublicationByEditorAsync(1)).ReturnsAsync(newPublication);
+            _mockPublicationRepository.Setup(a => a.GetAllPublicationByContentAsync(1)).ReturnsAsync(newPublication);
 
             // Act
-            var result = await _mockPublicationRepository.Object.GetAllPublicationByEditorAsync(1);
+            var result = await _mockPublicationRepository.Object.GetAllPublicationByContentAsync(1);
 
             // Assert
             Assert.NotNull(result);
             Assert.Equal(newPublication, result);
 
 
-
-
-
-
         }
-
-
-
 
 
     }
