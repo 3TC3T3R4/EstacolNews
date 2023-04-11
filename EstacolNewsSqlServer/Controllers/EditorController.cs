@@ -3,17 +3,18 @@ using EstacolNews.Domain.Sql.Commands;
 using EstacolNews.Domain.Sql.Entities;
 using EstacolNews.UseCases.Sql.Gateway.IterfacesUseCase.Commands;
 using Microsoft.AspNetCore.Mvc;
+using System.Web.Http.Cors;
 
 namespace EstacolNewsSqlServer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class EditorController : ControllerBase
     {
 
         private readonly IEditorUseCase _editorUseCase;
         private readonly IMapper _mapper;
-
 
         public EditorController(IEditorUseCase editorUseCase, IMapper mapper)
         {

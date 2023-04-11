@@ -9,7 +9,9 @@ using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.EditorCommands;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.PublicationCommands;
 using EstacolNews.UseCases.Sql.Gateway.IterfacesUseCase.Commands;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 
@@ -26,6 +28,17 @@ builder.Services.AddScoped<IContentUseCase, ContentUseCase>();
 builder.Services.AddScoped<IContentRepository, ContentRepository>();
 builder.Services.AddScoped<IPublicationUseCase, PublicationUseCase>();
 builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
+builder.Services.AddCors(options =>
+{
+
+    options.AddPolicy(name: MyAllowSpecificOrigins, policy =>
+    {
+        policy.WithOrigins("http://localhost:4200").AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials(); ;
+    });
+
+});
 
 
 
@@ -48,8 +61,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors(MyAllowSpecificOrigins);
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
