@@ -8,9 +8,9 @@ namespace EstacolNews.Domain.Sql.Entities
 {
     public class Content
     {
-
+        public int id_content { get; set; }
         public string title { get; set; }
-        public string estate_process { get; set; }
+        public string estate_process = "Editando";
         public bool estate = true;
         public string keywords { get; set; }
         public string type_publication { get; set; }

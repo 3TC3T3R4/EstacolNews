@@ -10,7 +10,7 @@ namespace EstacolNews.Domain.Sql.Entities
     {
 
         public int id_publication { get; set; }
-        public int id_editor_publication { get; set; }
+        public string id_editor_publication { get; set; }
         public int id_content_publication { get; set; }
         public bool estate = true;
 

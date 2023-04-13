@@ -36,8 +36,8 @@ namespace EstacolNewsSqlServer.Controllers
 
 
 
-        [HttpGet("{id:int}")]
-        public async Task<Editor> Get_Editor_By_Id(int id)
+        [HttpGet("ByIdEditor")]
+        public async Task<InsertNewEditor> Get_Editor_By_Id(string id)
         {
             return await _editorUseCase.GetEditorByIdAsync(id);
         }

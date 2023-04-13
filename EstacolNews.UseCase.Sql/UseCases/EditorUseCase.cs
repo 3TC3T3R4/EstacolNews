@@ -1,4 +1,5 @@
-﻿using EstacolNews.Domain.Sql.Entities;
+﻿using EstacolNews.Domain.Sql.Commands;
+using EstacolNews.Domain.Sql.Entities;
 using EstacolNews.UseCases.Sql.Gateway.IterfacesUseCase.Commands;
 using EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.EditorCommands;
 
@@ -25,7 +26,7 @@ namespace EstacolNews.UseCases.Sql.UseCases
             return await _editorRepository.GetAllEditorsAsync();
         }
 
-        public async Task<Editor> GetEditorByIdAsync(int idEditor)
+        public async Task<InsertNewEditor> GetEditorByIdAsync(string idEditor)
         {
             return await _editorRepository.GetEditorByIdAsync(idEditor);
         }

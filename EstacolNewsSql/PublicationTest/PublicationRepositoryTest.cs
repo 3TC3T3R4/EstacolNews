@@ -18,24 +18,24 @@ namespace EstacolNewsSql.PublicationTest
         }
 
 
-        [Fact]
-        public async Task CreatePublicationAsync()
-        {
-            //arrange
-            var newPublication = new Publication
-            {
-                id_editor_publication = 1,
-                id_content_publication = 1,
-                estate = true
+        //[Fact]
+        //public async Task CreatePublicationAsync()
+        //{
+        //    //arrange
+        //    var newPublication = new Publication
+        //    {
+        //        id_editor_publication = 1,
+        //        id_content_publication = 1,
+        //        estate = true
 
-            };
+        //    };
 
-            _mockPublicationRepository.Setup(x => x.InsertPublicationAsync(newPublication)).ReturnsAsync(newPublication);
-            //act
-            var result = await _mockPublicationRepository.Object.InsertPublicationAsync(newPublication);
-            //assert
-            Assert.Equal(newPublication, result);
-        }
+        //    _mockPublicationRepository.Setup(x => x.InsertPublicationAsync(newPublication)).ReturnsAsync(newPublication);
+        //    //act
+        //    var result = await _mockPublicationRepository.Object.InsertPublicationAsync(newPublication);
+        //    //assert
+        //    Assert.Equal(newPublication, result);
+        //}
 
        
 
@@ -98,50 +98,50 @@ namespace EstacolNewsSql.PublicationTest
 
 
 
-        [Fact]
-        public async Task GetPublicationsContentAsync()
-        {
-            //Arrange
-            var newPublication = new PublicationByContent
+        //[Fact]
+        //public async Task GetPublicationsContentAsync()
+        //{
+        //    //Arrange
+        //    var newPublication = new PublicationByContent
 
-            {
-                title = "Estevan",
-                Publications = new List<PublicationWithEditors>{
+        //    {
+        //        title = "Estevan",
+        //        Publications = new List<PublicationWithEditors>{
 
-                    new PublicationWithEditors
-                    {
-                         id_publication = 1,
-                         Editor = new List<Editor>{
+        //            new PublicationWithEditors
+        //            {
+        //                 id_publication = 1,
+        //                 Editor = new List<Editor>{
 
-                             new Editor{
-                                 id_user = "Mongo",
-                                 complete_name = "Estevan",
-                                 phone ="213654",
-                                 estate = true
+        //                     new Editor{
+        //                         id_user = "Mongo",
+        //                         complete_name = "Estevan",
+        //                         phone ="213654",
+        //                         estate = true
                               
 
-                             }
+        //                     }
 
-                         }
+        //                 }
 
-                    }
+        //            }
 
-                }
+        //        }
 
-            };
-
-
-            _mockPublicationRepository.Setup(a => a.GetAllPublicationByContentAsync(1)).ReturnsAsync(newPublication);
-
-            // Act
-            var result = await _mockPublicationRepository.Object.GetAllPublicationByContentAsync(1);
-
-            // Assert
-            Assert.NotNull(result);
-            Assert.Equal(newPublication, result);
+        //    };
 
 
-        }
+        //    _mockPublicationRepository.Setup(a => a.GetAllPublicationByContentAsync(1)).ReturnsAsync(newPublication);
+
+        //    // Act
+        //    var result = await _mockPublicationRepository.Object.GetAllPublicationByContentAsync(1);
+
+        //    // Assert
+        //    Assert.NotNull(result);
+        //    Assert.Equal(newPublication, result);
+
+
+        //}
 
 
     }

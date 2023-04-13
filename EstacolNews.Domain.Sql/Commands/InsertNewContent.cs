@@ -10,10 +10,7 @@ namespace EstacolNews.Domain.Sql.Commands
     {
 
         public string title { get; set; }
-        //public string estate_process { get; set; }
         public string keywords { get; set; }
-        //public string type_publication { get; set; }
-      // public string url { get; set; }
         public DateTime finish_date { get; set; }
         public DateTime publication_date { get; set; }
         public DateTime program_date { get; set; }

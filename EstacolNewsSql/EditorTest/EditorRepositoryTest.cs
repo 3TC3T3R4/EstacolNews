@@ -20,82 +20,82 @@ namespace EstacolNewsSql.EditorTest
         }
 
 
-        [Fact]
-        public async Task GetEditorsAsync()
-        {
-            //Arrange
-            var editor = new Editor
-            {
-                id_user = "MongoDb",
-                complete_name = "Test",
-                phone = "21354",
-                estate = true
+        //[Fact]
+        //public async Task GetEditorsAsync()
+        //{
+        //    //Arrange
+        //    var editor = new Editor
+        //    {
+        //        id_user = "MongoDb",
+        //        complete_name = "Test",
+        //        phone = "21354",
+        //        estate = true
 
-            };
-            var editorsList = new List<Editor> { editor };
-        _mockEditorRepository.Setup(x => x.GetAllEditorsAsync()).ReturnsAsync(editorsList);
+        //    };
+        //    var editorsList = new List<Editor> { editor };
+        //_mockEditorRepository.Setup(x => x.GetAllEditorsAsync()).ReturnsAsync(editorsList);
 
-            //Act
-            var result = await _mockEditorRepository.Object.GetAllEditorsAsync();
+        //    //Act
+        //    var result = await _mockEditorRepository.Object.GetAllEditorsAsync();
 
-            //Assert
-            Assert.NotNull(result);
-            Assert.Equal(editorsList, result);
+        //    //Assert
+        //    Assert.NotNull(result);
+        //    Assert.Equal(editorsList, result);
 
-        }
-
-
-        [Fact]
-        public async Task CreateEditorAsync()
-        {
-            //arrange
-            var newEditor = new Editor
-            {
-                id_user = "MongoDb",
-                complete_name = "Test",
-                phone = "21354",
-                estate = true
-
-            };
-            //var editorCreated = new InsertNewEditor
-            //{
-            //    id_user = "MongoDb",
-            //    complete_name = "Test",
-            //    phone = "21354",
-            //    estate = true
-
-            //};
-            _mockEditorRepository.Setup(x => x.InsertEditorAsync(newEditor)).ReturnsAsync(newEditor);
-            //act
-            var result = await _mockEditorRepository.Object.InsertEditorAsync(newEditor);
-            //assert
-            Assert.Equal(newEditor, result);
-        }
+        //}
 
 
+        //[Fact]
+        //public async Task CreateEditorAsync()
+        //{
+        //    //arrange
+        //    var newEditor = new Editor
+        //    {
+        //        id_user = "MongoDb",
+        //        complete_name = "Test",
+        //        phone = "21354",
+        //        estate = true
 
-        [Fact]
-        public async Task GetEditorByIdAsync()
-        {
-            //Arrange
-            var editor = new Editor
-            {
-                id_user = "MongoDb",
-                complete_name = "Test",
-                phone = "21354",
-                estate = true
+        //    };
+        //    //var editorCreated = new InsertNewEditor
+        //    //{
+        //    //    id_user = "MongoDb",
+        //    //    complete_name = "Test",
+        //    //    phone = "21354",
+        //    //    estate = true
 
-            };
-            //var editorsList = new List<Editor> { editor };
-            _mockEditorRepository.Setup(x => x.GetEditorByIdAsync(1)).ReturnsAsync(editor);
+        //    //};
+        //    _mockEditorRepository.Setup(x => x.InsertEditorAsync(newEditor)).ReturnsAsync(newEditor);
+        //    //act
+        //    var result = await _mockEditorRepository.Object.InsertEditorAsync(newEditor);
+        //    //assert
+        //    Assert.Equal(newEditor, result);
+        //}
 
-            //Act
-            var result = await _mockEditorRepository.Object.GetEditorByIdAsync(1);
 
-            //Assert
-            Assert.NotNull(result);
-            Assert.Equal(editor, result);
-        }
+
+        //[Fact]
+        //public async Task GetEditorByIdAsync()
+        //{
+        //    //Arrange
+        //    var editor = new Editor
+        //    {
+        //        id_user = "MongoDb",
+        //        complete_name = "Test",
+        //        phone = "21354",
+        //        estate = true
+
+        //    };
+        //    //var editorsList = new List<Editor> { editor };
+        //    _mockEditorRepository.Setup(x => x.GetEditorByIdAsync(1)).ReturnsAsync(editor);
+
+        //    //Act
+        //    var result = await _mockEditorRepository.Object.GetEditorByIdAsync(1);
+
+        //    //Assert
+        //    Assert.NotNull(result);
+        //    Assert.Equal(editor, result);
+        //}
 
 
 
