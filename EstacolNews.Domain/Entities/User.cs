@@ -13,7 +13,7 @@ namespace EstacolNews.Domain.NoSql.Entities
         public string user { get; set; }
         public string password { get; set; }
 
-        public int role = 1;
+        public int role = 2;
 
         public bool estate = false;
 

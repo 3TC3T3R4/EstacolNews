@@ -23,5 +23,18 @@ namespace DriverAdapterMongo.Repositories
             return user;
         }
 
+
+        public async Task<User> GetUserByIdAsync(string id)
+        {
+            var user = await userCollection.Find(c => c.id_fire== id).FirstOrDefaultAsync()
+                ?? throw new Exception($"There isn't a user with this ID: {id}.");
+            var userComplete = _mapper.Map<User>(user);
+            return userComplete;
+
+        }
+
+
+
+
     }
 }

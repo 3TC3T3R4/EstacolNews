@@ -62,7 +62,11 @@ namespace EstacolNewsSqlServer.Controllers
         {
             return await _contentUseCase.LikeContentByIdAsync(idContent);
         }
-
+        [HttpPut("UpdateUrl")]
+        public async Task<string> Update_Url(int idContent)
+        {
+            return await _contentUseCase.UpdateUrlByIdAsync(idContent);
+        }
 
 
 

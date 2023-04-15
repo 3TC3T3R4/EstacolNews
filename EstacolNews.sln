@@ -45,7 +45,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DriverAdapterMongo", "Drive
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DriverAdapterSQL", "DriverAdapterSQL\DriverAdapterSQL.csproj", "{5FF68BFC-7DE3-4E30-8277-49D9242B9371}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstacolNewsSql", "EstacolNewsSql\EstacolNewsSql.csproj", "{6C72620B-E28C-4897-80DA-6BA491F22729}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstacolNewsSql", "EstacolNewsSql\EstacolNewsSql.csproj", "{6C72620B-E28C-4897-80DA-6BA491F22729}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrivenAdapterRabbit", "DrivenAdapterRabbit\DrivenAdapterRabbit.csproj", "{88CB3061-CD1E-4FB3-92B0-A748EDEE7D6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,10 @@ Global
 		{6C72620B-E28C-4897-80DA-6BA491F22729}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C72620B-E28C-4897-80DA-6BA491F22729}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C72620B-E28C-4897-80DA-6BA491F22729}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88CB3061-CD1E-4FB3-92B0-A748EDEE7D6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88CB3061-CD1E-4FB3-92B0-A748EDEE7D6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88CB3061-CD1E-4FB3-92B0-A748EDEE7D6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88CB3061-CD1E-4FB3-92B0-A748EDEE7D6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,6 +124,7 @@ Global
 		{48CFC8B5-6B9E-40F5-8843-630B3989067F} = {7045B56B-AFB2-4D78-A539-FDFA8A878FF6}
 		{5FF68BFC-7DE3-4E30-8277-49D9242B9371} = {9537FB02-2368-4782-A23B-95104AA36E65}
 		{6C72620B-E28C-4897-80DA-6BA491F22729} = {FE635AAA-8589-4B3E-B183-5DD27A318B0B}
+		{88CB3061-CD1E-4FB3-92B0-A748EDEE7D6C} = {7045B56B-AFB2-4D78-A539-FDFA8A878FF6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C86B2C4D-ADA3-4FD7-9DBE-01D928D2AB5B}

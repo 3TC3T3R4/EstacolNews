@@ -23,5 +23,14 @@ namespace EstacolNews.UseCases.NoSql.UseCases
         {
             return await _userRepository.InsertUserAsync(user);
         }
+
+
+
+        public async Task<User> GetUserByIdAsync(string id)
+        {
+            return await _userRepository.GetUserByIdAsync(id);
+        }
+
+
     }
 }

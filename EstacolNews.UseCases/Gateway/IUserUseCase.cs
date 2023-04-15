@@ -13,6 +13,6 @@ namespace EstacolNews.UseCases.NoSql.Gateway
 
         Task<User> AddUser(User user);
 
-
+        Task<User> GetUserByIdAsync(string id);
     }
 }

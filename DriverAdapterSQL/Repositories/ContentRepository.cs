@@ -56,23 +56,17 @@ namespace DriverAdapterSQL.Repositories
 
             Guard.Against.Null(content, nameof(content));
             Guard.Against.NullOrEmpty(content.title, nameof(content.title), "NO PUEDES CREAR ALGO NUEVO SIN UN TITULO");
-           
-
-
-
-
-
 
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
             var contentNewAdd = new
             {
-                
-                titleB= content.title,
+
+                titleB = content.title,
                 estateProcess = "Editando",
-                estateB= content.estate,
+                estateB = content.estate,
                 keywordsB = content.keywords,
                 type = content.type_publication,
-                urlB = content.url,
+                urlB = "https://localhost:7267/api/Content/",
                 finishdateB = content.finish_date,
                 publicationdateB = content.publication_date,
                 startdate = content.program_date,
@@ -117,6 +111,20 @@ namespace DriverAdapterSQL.Repositories
             return "Like successfully";
         }
 
+
+        public async Task<string> UpdateUrlByIdAsync(int idContent)
+        {
+            var paramUrl = new { 
+                
+                defaultUrl = "https://localhost:7267/api/Content/" + $"{idContent}" 
+            };
+
+            var connection = await _dbConnectionBuilder.CreateConnectionAsync();
+            string sqlQuery = $"UPDATE {tableName} SET  url = @defaultUrl WHERE  id_content = {idContent}";
+            var result = await connection.ExecuteAsync(sqlQuery,paramUrl);
+            connection.Close();
+            return "Update URL  successfully";
+        }
 
 
 

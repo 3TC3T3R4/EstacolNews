@@ -18,6 +18,7 @@ namespace EstacolNews.UseCases.Sql.Gateway.IterfacesUseCase.Commands
         Task<string> DeleteContentByIdAsync(int idContent);
 
         Task<string> LikeContentByIdAsync(int idContent);
+        Task<string> UpdateUrlByIdAsync(int idContent);
 
 
 

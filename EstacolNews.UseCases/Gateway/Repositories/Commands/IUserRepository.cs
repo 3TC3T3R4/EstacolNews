@@ -8,6 +8,7 @@ namespace EstacolNews.UseCases.NoSql.Gateway.Repositories.Commands
 
 
         Task<User> InsertUserAsync(User user);
+        Task<User> GetUserByIdAsync(string id);
 
 
 

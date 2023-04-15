@@ -26,6 +26,21 @@ namespace EstacolNewsWithMongo.Controllers
             return await _userUseCase.AddUser(_mapper.Map<User>(command));
         }
 
+        //[HttpGet]
+        //public async Task<List<Customer>> Get_List_Customer()
+        //{
+        //    return await _customerUseCase.GetListCustomers();
+        //}
+
+        [HttpGet("user/{id}")]
+        public async Task<User> Get_User_By_Id(string id)
+        {
+            return await _userUseCase.GetUserByIdAsync(id);
+        }
+
+
+
+
 
     }
 }
