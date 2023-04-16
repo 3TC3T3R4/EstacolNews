@@ -41,7 +41,9 @@ namespace DriverAdapterSQL.Repositories
                 
             };
             string sqlQuery = $"INSERT INTO {tableName} (id_editor_publication,id_content_publication,estate)VALUES(@id_edi,@id_cont,@estateB)";
+
             var rows = await connection.ExecuteAsync(sqlQuery, contentNewAdd);
+            
             return publication;
         }
 
@@ -105,6 +107,21 @@ namespace DriverAdapterSQL.Repositories
             return customerAll;
 
         }
+
+        public async Task<string> UpdateStateByIdAsync(int id)
+        {
+           
+            var connection = await _dbConnectionBuilder.CreateConnectionAsync();
+            string sqlQuery = $"UPDATE  {tableNameC}  SET estate_process = 'Publicado' " +
+                                $"WHERE id_content = {id}";
+
+            var rows = await connection.ExecuteAsync(sqlQuery);
+            
+            connection.Close();
+            return "StateUpdated";
+
+        }
+
 
 
 

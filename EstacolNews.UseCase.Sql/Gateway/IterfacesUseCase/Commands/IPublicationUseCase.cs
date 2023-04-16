@@ -18,6 +18,7 @@ namespace EstacolNews.UseCases.Sql.Gateway.IterfacesUseCase.Commands
         Task<PublicationByEditor> GetAllPublicationByEditorAsync(int idEditor);
         Task<PublicationByContent> GetAllPublicationByContentAsync(int idContent);
 
+        Task<string> UpdateStateByIdAsync(int idContent);
 
 
     }

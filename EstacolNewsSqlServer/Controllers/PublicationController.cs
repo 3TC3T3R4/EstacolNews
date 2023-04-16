@@ -41,7 +41,11 @@ namespace EstacolNewsSqlServer.Controllers
         {
             return await _publicationUseCase.GetAllPublicationByContentAsync(idContent);
         }
-
+        [HttpPut("UpdateEstate")]
+        public async Task<string> UpdateStateByContent(int idContent)
+        {
+            return await _publicationUseCase.UpdateStateByIdAsync(idContent);
+        }
 
 
     }

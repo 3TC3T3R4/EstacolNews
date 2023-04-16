@@ -11,5 +11,7 @@ namespace EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.PublicationComm
         Task<PublicationByEditor> GetAllPublicationByEditorAsync(int idEditor);
         Task<PublicationByContent> GetAllPublicationByContentAsync(int idContent);
 
+        Task<string> UpdateStateByIdAsync(int idContent);
+
     }
 }
