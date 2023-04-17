@@ -26,7 +26,7 @@ namespace EstacolNews.UseCases.Sql.UseCases
         {
             return await _publicationRepository.InsertPublicationAsync(publication);
         }
-        public async Task<PublicationByEditor> GetAllPublicationByEditorAsync(int idEditor)
+        public async Task<PublicationByEditor> GetAllPublicationByEditorAsync(string idEditor)
         {
             return await _publicationRepository.GetAllPublicationByEditorAsync(idEditor);
         }

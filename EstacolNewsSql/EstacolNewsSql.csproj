@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DriverAdapterSQL\DriverAdapterSQL.csproj" />
     <ProjectReference Include="..\EstacolNews.UseCase.Sql\EstacolNews.UseCases.Sql.csproj" />
   </ItemGroup>
 

@@ -47,7 +47,7 @@ namespace DriverAdapterSQL.Repositories
             return publication;
         }
 
-        public async Task<PublicationByEditor> GetAllPublicationByEditorAsync(int id)
+        public async Task<PublicationByEditor> GetAllPublicationByEditorAsync(string id)
         {
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
             string sqlQuery = $"SELECT * FROM {tableNameE} edi " +

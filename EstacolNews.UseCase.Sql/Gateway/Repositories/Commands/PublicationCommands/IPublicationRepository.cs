@@ -8,7 +8,7 @@ namespace EstacolNews.UseCases.Sql.Gateway.Repositories.Commands.PublicationComm
     public interface IPublicationRepository
     {
         Task<Publication> InsertPublicationAsync(Publication publication);
-        Task<PublicationByEditor> GetAllPublicationByEditorAsync(int idEditor);
+        Task<PublicationByEditor> GetAllPublicationByEditorAsync(string idEditor);
         Task<PublicationByContent> GetAllPublicationByContentAsync(int idContent);
 
         Task<string> UpdateStateByIdAsync(int idContent);

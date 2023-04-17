@@ -31,7 +31,7 @@ namespace EstacolNewsSqlServer.Controllers
         }
 
         [HttpGet]
-        public async Task<PublicationByEditor> Get_PublicationByEditor(int idEditor)
+        public async Task<PublicationByEditor> Get_PublicationByEditor(string idEditor)
         {
             return await _publicationUseCase.GetAllPublicationByEditorAsync(idEditor);
         }
