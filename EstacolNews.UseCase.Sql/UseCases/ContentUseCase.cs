@@ -32,6 +32,11 @@ namespace EstacolNews.UseCases.Sql.UseCases
         {
             return await _contentRepository.GetAllContentsAsync();
         }
+        public async Task<List<Content>> GetAllContentsAsyncClient()
+        {
+            return await _contentRepository.GetAllContentsAsyncClient();
+        }
+
 
         public async Task<Content> GetContentByIdAsync(int idContent)
         {

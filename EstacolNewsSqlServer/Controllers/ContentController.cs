@@ -33,6 +33,11 @@ namespace EstacolNewsSqlServer.Controllers
             return await _contentUseCase.GetAllContentsAsync();
         }
 
+        [HttpGet("OnlyClients")]
+        public async Task<List<Content>> Get_List_Contents_Client()
+        {
+            return await _contentUseCase.GetAllContentsAsyncClient();
+        }
 
 
         [HttpGet("{id:int}")]

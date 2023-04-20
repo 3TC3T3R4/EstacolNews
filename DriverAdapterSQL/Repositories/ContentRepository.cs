@@ -24,10 +24,16 @@ namespace DriverAdapterSQL.Repositories
         public async Task<List<Content>> GetAllContentsAsync()
         {
             var data = await GetAllContentsAsyncFilter();
-            var result = data.Where(x => x.estate_process == "Publicado" && x.estate !=false).ToList();
+            var result = data.Where(x => x.estate_process == "Editando" && x.estate !=false).ToList();
             return result;
         }
 
+        public async Task<List<Content>> GetAllContentsAsyncClient()
+        {
+            var data = await GetAllContentsAsyncFilter();
+            var result = data.Where(x => x.estate_process == "Publicado" && x.estate != false).ToList();
+            return result;
+        }
 
         public async Task<List<Content>> GetAllContentsAsyncFilter()
         {

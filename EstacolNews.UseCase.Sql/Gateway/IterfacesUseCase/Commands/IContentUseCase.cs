@@ -12,7 +12,10 @@ namespace EstacolNews.UseCases.Sql.Gateway.IterfacesUseCase.Commands
     {
 
         Task<Content> AddContent(Content content);
+       
         Task<List<Content>> GetAllContentsAsync();
+        Task<List<Content>> GetAllContentsAsyncClient();
+
         Task<Content> GetContentByIdAsync(int idContent);
         Task<InsertNewContent> UpdateContentByIdAsync(int idContent, InsertNewContent content);
         Task<string> DeleteContentByIdAsync(int idContent);
